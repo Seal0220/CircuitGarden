@@ -123,7 +123,7 @@
                     },
                     {
                         "Name": "ESP32-S (02)",
-                        "Module": "ESP32-S",+++
+                        "Module": "ESP32-S",
                         "Mac Address": "24:0a:c4:0c:c7:70",
                         "IP": "10.254.14.218",
                         "Port": 1900
@@ -140,7 +140,7 @@
                         "Module": "ESP32-S",
                         "Mac Address": "30:ae:a4:f1:ca:60",
                         "IP": "10.254.14.200",
-
+                        
                         "Port": 1900
                     },
                     {
