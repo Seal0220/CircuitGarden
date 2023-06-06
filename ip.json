@@ -1,0 +1,156 @@
+{
+    "SSID": {
+            "SEAL": {
+                "Password": "password",
+                "Devices": [
+                    {
+                        "Name": "Seal Macbook",
+                        "Module": "Macbook",
+                        "Mac Address": "3c:06:30:3c:4b:36",
+                        "IP": "192.168.100.2",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32-S (01)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "b8:d6:1a:81:8e:30",
+                        "IP": "192.168.100.3",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32-S (02)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "24:0a:c4:0c:c7:70",
+                        "IP": "192.168.100.4",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32-S (03)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "84:0d:8e:3b:0e:c8",
+                        "IP": "192.168.100.5",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32-S (04)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "30:ae:a4:f1:ca:60",
+                        "IP": "192.168.100.6",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32-S (05)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "9c:9c:1f:d5:81:bc",
+                        "IP": "192.168.100.7",
+                        "Port": 1900
+                    }
+                ]
+            },
+            "TEST": {
+                "Password": "password",
+                "Devices": [
+                    {
+                        "Name": "Seal Macbook",
+                        "Module": "Macbook",
+                        "Mac Address": "3c:06:30:3c:4b:36",
+                        "IP": "192.168.100.2",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32-S (01)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "b8:d6:1a:81:8e:30",
+                        "IP": "192.168.100.3",
+                        "Port": 1900
+                    }
+                ]
+            },
+            "CAT": {
+                "Password": "",
+                "Devices": [
+                    {
+                        "Name": "Seal Macbook",
+                        "Module": "Macbook",
+                        "Mac Address": "3c:06:30:3c:4b:36",
+                        "IP": "192.168.1.2",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32-S (01)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "b8:d6:1a:81:8e:30",
+                        "IP": "192.168.1.3",
+                        "Port": 1900
+                    }
+                ]
+            },
+            "TNUA-AP-N": {
+                "Password": "tnuaccnet",
+                "Devices": [
+                    {
+                        "Name": "Seal Macbook",
+                        "Module": "Macbook",
+                        "Mac Address": "3c:06:30:3c:4b:36",
+                        "IP": "",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32-S (01)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "b8:d6:1a:81:8e:30",
+                        "IP": "",
+                        "Port": 1900
+                    }
+                ]
+            },
+            "TNUA-DORM": {
+                "Password": "ccnet",
+                "Devices": [
+                    {
+                        "Name": "Seal Macbook",
+                        "Module": "Macbook",
+                        "Mac Address": "3c:06:30:3c:4b:36",
+                        "IP": "",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32-S (01)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "b8:d6:1a:81:8e:30",
+                        "IP": "10.254.14.199",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32-S (02)",
+                        "Module": "ESP32-S",+++
+                        "Mac Address": "24:0a:c4:0c:c7:70",
+                        "IP": "10.254.14.218",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32-S (03)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "84:0d:8e:3b:0e:c8",
+                        "IP": "10.254.14.61",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32-S (04)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "30:ae:a4:f1:ca:60",
+                        "IP": "10.254.14.200",
+
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32-S (05)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "9c:9c:1f:d5:81:bc",
+                        "IP": "10.254.14.208",
+                        "Port": 1900
+                    }
+                ]
+            }
+    }
+}
