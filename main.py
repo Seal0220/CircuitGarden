@@ -149,7 +149,7 @@ if __name__ == '__main__':
     # freq(240000000)
 
     wifi = WIFI()
-    asyncio.run(wifi.ConnectWIFI('TNUA-DORM', 'ccnet'))
+    asyncio.run(wifi.ConnectWIFI('TNUA-AP', 'ccnet'))
     # asyncio.run(wifi.ConnectWIFI('SEAL', 'password'))
     asyncio.run(button_handler(wifi))
 

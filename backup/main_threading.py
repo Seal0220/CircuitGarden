@@ -18,7 +18,6 @@ class WIFI():
         self.IP = ''
         self.Broadcaster = None
         
-        # print(self.wifi.ifconfig())
         print(*self.wifi.scan(), sep='\n')
 
     def ConnectWIFI(self, SSID, password):
