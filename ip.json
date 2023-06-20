@@ -56,7 +56,7 @@
                         "Name": "Seal Macbook",
                         "Module": "Macbook",
                         "Mac Address": "3c:06:30:3c:4b:36",
-                        "IP": "192.168.100.2",
+                        "IP": "192.168.0.2",
                         "Port": 1900
                     },
                     {
