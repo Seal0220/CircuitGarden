@@ -20,13 +20,18 @@ class WIFI():
         self.macAddress = ''
         self.IP = ''
         self.Broadcaster = None        
-        print(f'[{self.name}] Nearby AP: ')
-        print(*self.NearbyAP(), sep='\n', end='\n\n')
+        # print(f'[{self.name}] Nearby AP: ')
+        # print(*self.NearbyAP(), sep='\n', end='\n\n')
     
     def NearbyAP(self):
         return map(lambda s: OrderedDict(zip(('ssid','bssid','channel','RSSI','security','hidden'),s)), self.wifi.scan())
     
-    async def ConnectWIFI(self, SSID, password):
+    async def ConnectWIFI(self, location):
+        with open('./ip.json', 'r') as Json:
+            _json = json.load(Json)
+            SSID = _json['Location'][location]['SSID']
+            password = _json['Location'][location]['Password']
+                
         self.wifi.connect(SSID, password)
         connecting_time = 0
         def WIFIstatus(status):
@@ -58,7 +63,7 @@ class WIFI():
                     print(f'[{self.name}][INFO] MAC address: {self.macAddress}')
                     print(f'[{self.name}][INFO] IP address: {self.IP} ', dict(zip(('IP', 'Subnet mask', 'Gateway', 'DNS'), self.wifi.ifconfig())))
                     print()
-                    self.Broadcaster = self.UDPBroadcaster(self.IP, SSID)
+                    self.Broadcaster = self.UDPBroadcaster(self.IP, SSID, self.macAddress, location)
                     break
             else:
                 print(f'[{self.name}][ERROR] WIFI connection FAILED! TIMEOUT (Wrong password or Poor signal ...)')
@@ -75,10 +80,12 @@ class WIFI():
         return self.wifi.ifconfig()[0]
 
     class UDPBroadcaster():
-        def __init__(self, IP, SSID):
+        def __init__(self, IP, SSID, macAddress, location):
             self.IP = IP
             self.port = 1900
             self.SSID = SSID
+            self.macAddress = macAddress
+            self.location = location
             self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             self.socket.bind((self.IP, self.port))
@@ -91,9 +98,13 @@ class WIFI():
         def GetIPs(self):
             with open('./ip.json', 'r') as Json:
                 _Json = json.load(Json)
-                Devices = _Json['SSID'][self.SSID]['Devices']
-                ips = [(device["IP"], device["Port"]) for device in Devices]
-                ips.remove((self.IP, self.port))
+                Devices = _Json['Location'][self.location]['Devices']
+                ips = []
+                for device in Devices:
+                    if device['Mac Address'] == self.macAddress:
+                        continue
+                    else:
+                        ips.append((device["IP"], device["Port"]))
                 return ips
 
         async def Listen(self):
@@ -121,8 +132,7 @@ class WIFI():
                 while True:
                     gc.collect()
                     try:
-                        self.socket.sendto(
-                            str(message).encode('utf-8'), reciever)
+                        self.socket.sendto(str(message).encode('utf-8'), reciever)
                         print(f'[{self.name}] Sent {reciever}')
                         break
                     except OSError as e:
@@ -149,7 +159,7 @@ if __name__ == '__main__':
     # freq(240000000)
 
     wifi = WIFI()
-    asyncio.run(wifi.ConnectWIFI('TNUA-AP', 'ccnet'))
-    # asyncio.run(wifi.ConnectWIFI('SEAL', 'password'))
+    # asyncio.run(wifi.ConnectWIFI('TNUA-AP', 'ccnet'))
+    asyncio.run(wifi.ConnectWIFI('Home'))
     asyncio.run(button_handler(wifi))
 
