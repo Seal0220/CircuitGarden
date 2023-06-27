@@ -94,6 +94,7 @@ class WIFI:
             self.socket.setblocking(False)
             self.receivers = self.GetIPs()
             self.name = self.__class__.__name__
+            self.isLighting = 0
             self.isBeeping = 0
             
             self.recvmsg = ''
@@ -129,10 +130,12 @@ class WIFI:
                         print(f'[{self.name}][Listen]{e} ...')
 
         async def __Light(self):
-            t_start = time.ticks_ms()
-            while time.ticks_diff(time.ticks_ms(), t_start) <= 100:
-                led.value(1)
-            led.value(0)
+            self.isLighting +=1
+            led.value(1)
+            await asyncio.sleep(0.1)
+            self.isLighting -=1
+            if not self.isLighting:
+                led.value(0)
             
         async def __Beep(self):
             self.isBeeping +=1
