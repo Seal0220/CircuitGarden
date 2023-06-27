@@ -94,6 +94,7 @@ class WIFI:
             self.socket.setblocking(False)
             self.receivers = self.GetIPs()
             self.name = self.__class__.__name__
+            self.isBeeping = 0
             
             self.recvmsg = ''
             print(f'[{self.name}] Initialized')
@@ -134,11 +135,14 @@ class WIFI:
             led.value(0)
             
         async def __Beep(self):
+            self.isBeeping +=1
             pwm = PWM(Pin(4))
             pwm.freq(2000)
             pwm.duty(512)
             await asyncio.sleep(0.3)
-            pwm.deinit()
+            self.isBeeping -=1
+            if not self.isBeeping:
+                pwm.deinit()
 
         async def Broadcast(self, message):
             async def _Send(message, reciever):
