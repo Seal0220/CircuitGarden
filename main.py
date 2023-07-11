@@ -12,6 +12,7 @@ from collections import OrderedDict
 
 button = Pin(17, Pin.IN, Pin.PULL_UP)
 led = Pin(2, Pin.OUT)
+soundTrig = Pin(16, Pin.OUT)
 time_offset = time.time()
 
 class WIFI:
@@ -24,6 +25,35 @@ class WIFI:
         self.Broadcaster = None        
         # print(f'[{self.name}] Nearby AP: ')
         # print(*self.NearbyAP(), sep='\n', end='\n\n')
+        self._NearbyAP()
+        
+        asyncio.create_task(self.GetRSSI())
+        
+    async def GetRSSI(self):
+        while True:
+            locater1_SSID, locater2_SSID = b'Xuan', b'SEAL'
+            locater1_RSSI = locater2_RSSI = None
+            
+            APs = self.wifi.scan()
+            for ap in APs:
+                if ap[0] == locater1_SSID:
+                    locater1_RSSI = ap[3]
+                elif ap[0] == locater2_SSID:
+                    locater2_RSSI = ap[3]
+                if locater1_RSSI and locater2_RSSI:
+                    break
+                    
+            print(f'{locater1_SSID.decode()}: {locater1_RSSI}, {locater2_SSID.decode()}: {locater2_RSSI}')
+            
+            # await asyncio.sleep(0.1)
+        
+    def _NearbyAP(self):
+        print()
+        print(f'[{self.name}] Nearby AP: ')
+        # print(*self.NearbyAP(), sep='\n', end='\n\n')
+        print(self.wifi.scan(), type(self.wifi.scan()))
+        print()
+        # await asyncio.sleep(0.1)
     
     def NearbyAP(self):
         return map(lambda s: OrderedDict(zip(('ssid','bssid','channel','RSSI','security','hidden'),s)), self.wifi.scan())
@@ -123,6 +153,7 @@ class WIFI:
                     print(f'\n[{self.name}][Listen][{addr[0]}:{addr[1]}] Received message: {self.recvmsg}')
                     asyncio.create_task(self.__Light())
                     asyncio.create_task(self.__Beep())
+                    asyncio.create_task(self.__SoundTrig())
                 except Exception as e:
                     if str(e) == "[Errno 11] EAGAIN":
                         await asyncio.sleep(0)
@@ -136,7 +167,12 @@ class WIFI:
             self.isLighting -=1
             if not self.isLighting:
                 led.value(0)
-            
+        
+        async def __SoundTrig(self):
+            soundTrig.value(1)
+            await asyncio.sleep(0.1)
+            soundTrig.value(0)
+        
         async def __Beep(self):
             self.isBeeping +=1
             pwm = PWM(Pin(4))
@@ -211,6 +247,7 @@ if __name__ == '__main__':
 
     wifi = WIFI()
     wifi.ConnectWIFI('Home')
+    # wifi.ConnectWIFI('CAT')
     asyncio.run(button_handler(wifi))
     
     # async def Main():

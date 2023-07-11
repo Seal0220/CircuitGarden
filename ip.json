@@ -251,29 +251,63 @@
                         "Name": "ESP32-S (02)",
                         "Module": "ESP32-S",
                         "Mac Address": "24:0a:c4:0c:c7:70",
-                        "IP": "10.254.30.225",
+                        "IP": "10.254.23.158",
                         "Port": 1900
                     },
                     {
                         "Name": "ESP32-S (03)",
                         "Module": "ESP32-S",
                         "Mac Address": "84:0d:8e:3b:0e:c8",
-                        "IP": "10.254.30.220",
+                        "IP": "10.254.23.157",
                         "Port": 1900
                     },
                     {
                         "Name": "ESP32-S (04)",
                         "Module": "ESP32-S",
                         "Mac Address": "30:ae:a4:f1:ca:60",
-                        "IP": "10.254.30.219",
-                        
+                        "IP": "10.254.23.154",
                         "Port": 1900
                     },
                     {
                         "Name": "ESP32-S (05)",
                         "Module": "ESP32-S",
                         "Mac Address": "9c:9c:1f:d5:81:bc",
-                        "IP": "10.254.30.214",
+                        "IP": "10.254.23.165",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32(06)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "cc:db:a7:4f:84:d0",
+                        "IP": "10.254.23.166",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32(07)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "cc:db:a7:46:e0:74",
+                        "IP": "10.254.23.167",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32(08)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "cc:db:a7:46:f7:14",
+                        "IP": "10.254.23.168",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32(09)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "cc:db:a7:46:f9:c8",
+                        "IP": "10.254.23.147",
+                        "Port": 1900
+                    },
+                    {
+                        "Name": "ESP32(10)",
+                        "Module": "ESP32-S",
+                        "Mac Address": "cc:db:a7:46:f5:a8",
+                        "IP": "0.0.0.0",
                         "Port": 1900
                     }
                 ]
