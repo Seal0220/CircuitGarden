@@ -27,7 +27,7 @@ class WIFI:
         # print(*self.NearbyAP(), sep='\n', end='\n\n')
         self._NearbyAP()
         
-        asyncio.create_task(self.GetRSSI())
+        # asyncio.create_task(self.GetRSSI())
         
     async def GetRSSI(self):
         while True:
@@ -50,8 +50,8 @@ class WIFI:
     def _NearbyAP(self):
         print()
         print(f'[{self.name}] Nearby AP: ')
-        # print(*self.NearbyAP(), sep='\n', end='\n\n')
-        print(self.wifi.scan(), type(self.wifi.scan()))
+        print(*self.NearbyAP(), sep='\n', end='\n\n')
+        # print(self.wifi.scan(), type(self.wifi.scan()))
         print()
         # await asyncio.sleep(0.1)
     
