@@ -1,10 +1,6 @@
 import uasyncio as asyncio
-import json
-import socket
-import ubinascii
-import network
-import gc
-from machine import Pin, PWM, ADC  #, freq
+import json, socket, ubinascii, network, gc, neopixel
+from machine import Pin, PWM, UART, ADC  #, freq
 import utime as time
 from collections import OrderedDict
 
@@ -12,9 +8,25 @@ from collections import OrderedDict
 
 button = Pin(17, Pin.IN, Pin.PULL_UP)
 led = Pin(2, Pin.OUT)
-soundTrig = Pin(16, Pin.OUT)
+led2 = Pin(19, Pin.OUT)
 time_offset = time.time()
 
+
+class NeoPixel(neopixel.NeoPixel):
+    def __init__(self, pin, num):
+        super().__init__(pin, num)
+        super().fill((255, 255, 255))
+        self.write()
+
+    def __add__(self, i):
+        self[i] = (0, 0, 255)
+
+    def __sub__(self, i):
+        self[i] = (255, 255, 255)
+
+
+    
+    
 class WIFI:
     def __init__(self):
         self.wifi = network.WLAN(network.STA_IF)
@@ -26,7 +38,6 @@ class WIFI:
         # print(f'[{self.name}] Nearby AP: ')
         # print(*self.NearbyAP(), sep='\n', end='\n\n')
         self._NearbyAP()
-        
         # asyncio.create_task(self.GetRSSI())
         
     async def GetRSSI(self):
@@ -117,6 +128,7 @@ class WIFI:
             self.port = 1900
             self.SSID = SSID
             self.macAddress = macAddress
+            self.id = None
             self.location = location
             self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -126,8 +138,9 @@ class WIFI:
             self.name = self.__class__.__name__
             self.isLighting = 0
             self.isBeeping = 0
+            self.NeoPixel = NeoPixel(18, 8)
             
-            self.recvmsg = ''
+            # self.recvmsg = ''
             print(f'[{self.name}] Initialized')
             asyncio.create_task(self.Listen())
 
@@ -138,7 +151,7 @@ class WIFI:
                 ips = []
                 for device in Devices:
                     if device['Mac Address'] == self.macAddress:
-                        continue
+                        self.id = device['id']
                     else:
                         ips.append((device["IP"], device["Port"]))
                 return ips
@@ -149,11 +162,12 @@ class WIFI:
                 gc.collect()
                 try:
                     data, addr = self.socket.recvfrom(1024)
-                    self.recvmsg = data.decode("utf-8")
-                    print(f'\n[{self.name}][Listen][{addr[0]}:{addr[1]}] Received message: {self.recvmsg}')
+                    id, msg = data
+                    print(f'\n[{self.name}][Listen][[{id}]{addr[0]}:{addr[1]}] Received message: {msg.decode("utf-8")}')
                     asyncio.create_task(self.__Light())
                     asyncio.create_task(self.__Beep())
-                    asyncio.create_task(self.__SoundTrig())
+                    asyncio.create_task(self.__NeoPixel(id))
+                    # asyncio.create_task(self.__soundUART())
                 except Exception as e:
                     if str(e) == "[Errno 11] EAGAIN":
                         await asyncio.sleep(0)
@@ -168,10 +182,10 @@ class WIFI:
             if not self.isLighting:
                 led.value(0)
         
-        async def __SoundTrig(self):
-            soundTrig.value(1)
-            await asyncio.sleep(0.1)
-            soundTrig.value(0)
+        # async def __soundUART(self):
+        #     soundUART = UART(1, baudrate=9600, tx=1, rx=3)
+        #     soundUART.write(b'\x7E\xFF\x06\x03\x00\x00\x01\xFE\xF7\xEF')
+        #     await asyncio.sleep(0.5)
         
         async def __Beep(self):
             self.isBeeping +=1
@@ -182,13 +196,21 @@ class WIFI:
             self.isBeeping -=1
             if not self.isBeeping:
                 pwm.deinit()
+                
+        async def __NeoPixel(self, i):
+            self.NeoPixel+=i
+            self.NeoPixel.write()
+            await asyncio.sleep_ms(500)
+            self.NeoPixel-=i
+            self.NeoPixel.write()
+            
 
         async def Broadcast(self, message):
             async def _Send(message, reciever):
                 while True:
                     gc.collect()
                     try:
-                        self.socket.sendto(str(message).encode('utf-8'), reciever)
+                        self.socket.sendto((self.id, str(message).encode('utf-8')), reciever)
                         print(f'[{time.time()-time_offset}][{self.name}][Broadcast] Sent ( {message} ) to {reciever}')
                         break
                     except Exception as e:
@@ -198,30 +220,6 @@ class WIFI:
             for reciever in self.receivers:
                 gc.collect()
                 asyncio.create_task(_Send(message, reciever))
-            
-                
-                        
-        # async def Rotation():
-        #     pwm = PWM(Pin(4))
-        #     while True:
-        #         pwm.freq(2000)
-        #         pwm.duty(ADC(Pin(27, Pin.IN)).read()//4)            
-        #         await asyncio.sleep(0.01)
-
-# class Beeper:
-#     def __init__(self, pin):
-#         self.
-        
-#     def Beep(self, val):
-#         # p = int(wifi.Broadcaster.recvmsg)
-#         self.pwm.freq(2000)          
-#         self.pwm.duty(val)
-#         # self.pwm.freq(1600)
-  
-  
-#  memFree_KB, memFree_B = divmod(gc.mem_free(), 1024)
-# memAlloc_KB, memAlloc_B = divmod(gc.mem_alloc(), 1024)
-# print(f'可用記憶體： {memFree_KB} KB, {memFree_B} Bytes\n已分配： {memAlloc_KB} KB, {memAlloc_B} Bytes')      
 
 
 async def button_handler(wifi):
@@ -232,30 +230,20 @@ async def button_handler(wifi):
 
         if not button.value() and not isPressed:
             led.value(1)
+            led2.value(1)
             gc.collect()
             await wifi.Broadcaster.Broadcast('HI')
             await asyncio.sleep(1)
         else:
             led.value(0)
+            led2.value(0)
 
 if __name__ == '__main__':
-    # freq(240000000)
-    # adc_x = ADC(Pin(12, Pin.IN))
-    # adc_y = ADC(Pin(14, Pin.IN))
-    # adc_z = ADC(Pin(27, Pin.IN))
-
-
+    
     wifi = WIFI()
     wifi.ConnectWIFI('Home')
-    # wifi.ConnectWIFI('CAT')
+    # wifi.ConnectWIFI('CAT-Office')
     asyncio.run(button_handler(wifi))
-    
-    # async def Main():
-    #     while True:
-    #         await wifi.Broadcaster.Broadcast('Hello')
-    #         await asyncio.sleep(0.5)
-    
-    # asyncio.run(Main())
         
     
 
