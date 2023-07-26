@@ -14,15 +14,17 @@ time_offset = time.time()
 
 class NeoPixel(neopixel.NeoPixel):
     def __init__(self, pin, num):
-        super().__init__(pin, num)
+        super().__init__(Pin(pin, Pin.OUT), num)
         super().fill((255, 255, 255))
-        self.write()
+        super().write()
 
     def __add__(self, i):
         self[i] = (0, 0, 255)
+        super().write()
 
     def __sub__(self, i):
         self[i] = (255, 255, 255)
+        super().write()
 
 
     
@@ -35,28 +37,7 @@ class WIFI:
         self.macAddress = ''
         self.IP = ''
         self.Broadcaster = None        
-        # print(f'[{self.name}] Nearby AP: ')
-        # print(*self.NearbyAP(), sep='\n', end='\n\n')
         self._NearbyAP()
-        # asyncio.create_task(self.GetRSSI())
-        
-    async def GetRSSI(self):
-        while True:
-            locater1_SSID, locater2_SSID = b'Xuan', b'SEAL'
-            locater1_RSSI = locater2_RSSI = None
-            
-            APs = self.wifi.scan()
-            for ap in APs:
-                if ap[0] == locater1_SSID:
-                    locater1_RSSI = ap[3]
-                elif ap[0] == locater2_SSID:
-                    locater2_RSSI = ap[3]
-                if locater1_RSSI and locater2_RSSI:
-                    break
-                    
-            print(f'{locater1_SSID.decode()}: {locater1_RSSI}, {locater2_SSID.decode()}: {locater2_RSSI}')
-            
-            # await asyncio.sleep(0.1)
         
     def _NearbyAP(self):
         print()
@@ -162,11 +143,11 @@ class WIFI:
                 gc.collect()
                 try:
                     data, addr = self.socket.recvfrom(1024)
-                    id, msg = data
-                    print(f'\n[{self.name}][Listen][[{id}]{addr[0]}:{addr[1]}] Received message: {msg.decode("utf-8")}')
+                    id, msg = data.decode("utf-8").split(',')
+                    print(f'\n[{self.name}][Listen][[{id}]{addr[0]}:{addr[1]}] Received message: {msg}')
                     asyncio.create_task(self.__Light())
                     asyncio.create_task(self.__Beep())
-                    asyncio.create_task(self.__NeoPixel(id))
+                    asyncio.create_task(self.__NeoPixel(int(id)))
                     # asyncio.create_task(self.__soundUART())
                 except Exception as e:
                     if str(e) == "[Errno 11] EAGAIN":
@@ -198,11 +179,9 @@ class WIFI:
                 pwm.deinit()
                 
         async def __NeoPixel(self, i):
-            self.NeoPixel+=i
-            self.NeoPixel.write()
+            self.NeoPixel+i
             await asyncio.sleep_ms(500)
-            self.NeoPixel-=i
-            self.NeoPixel.write()
+            self.NeoPixel-i
             
 
         async def Broadcast(self, message):
@@ -210,8 +189,9 @@ class WIFI:
                 while True:
                     gc.collect()
                     try:
-                        self.socket.sendto((self.id, str(message).encode('utf-8')), reciever)
-                        print(f'[{time.time()-time_offset}][{self.name}][Broadcast] Sent ( {message} ) to {reciever}')
+                        msg = f"{self.id},{message}"
+                        self.socket.sendto(msg.encode('utf-8'), reciever)
+                        print(f'[{time.time()-time_offset}][{self.name}][Broadcast] Sent ( {msg} ) to {reciever}')
                         break
                     except Exception as e:
                         print(f'[{time.time()-time_offset}][{self.name}][Broadcast][{reciever}]{e} ...')
