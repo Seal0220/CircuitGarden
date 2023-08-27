@@ -23,111 +23,51 @@ class NeoPixel(neopixel.NeoPixel):
     def __sub__(self, i):
         self[i] = (255, 255, 255)
         super().write()
-        
-
-class Neo2(neopixel.NeoPixel):
-    def __init__(self, pin, num):
-        super().__init__(Pin(pin, Pin.OUT), num)
-        super().fill((255, 255, 255))
-        super().write()
-        
-    def setHSV(self, h: float, s: float, v: float):
-        _h = h / 60.0
-        i = int(_h) % 6
-        f = _h - int(_h)
-        p = v * (1 - s)
-        q = v * (1 - f * s)
-        r = v * (1 - (1 - f) * s)
-        if i == 0: 
-            return (round(v * 255), round(r * 255), round(p * 255))
-        elif i == 1: 
-            return (round(q * 255), round(v * 255), round(p * 255))
-        elif i == 2: 
-            return (round(p * 255), round(v * 255), round(r * 255))
-        elif i == 3:
-            return (round(p * 255), round(q * 255), round(v * 255))
-        elif i == 4:
-            return (round(r * 255), round(p * 255), round(v * 255))
-        elif i == 5:
-            return (round(v * 255), round(p * 255), round(q * 255))
-            
-    def Loop(self):
-        color = 0
-        while True:
-            print(color)
-            for i in range(8):
-                self[i] = self.setHSV(color,1,1)
-            super().write()
-            color+=0.1
-            
-            if color>=360:
-                color=0
-                
-            # time.sleep_ms(100)
-            
-    def Round(self):
-        color = i = 0
-        while True:
-            print(color)
-            self[i] = self.setHSV(color+i,1,1)
-            super().write()
-            
-            color+=8.1
-            i+=1
-            
-            if color>=360:
-                color=0
-                
-            if i>=8:
-                i=0
-                
-            
-            time.sleep_ms(100)
-            
+                 
 
 
-class RGBled:
-    def __init__(self, pinR, pinG, pinB):
-        self.pwmR = PWM(Pin(pinR, Pin.OUT, Pin.PULL_UP))
-        self.pwmG = PWM(Pin(pinG, Pin.OUT, Pin.PULL_UP))
-        self.pwmB = PWM(Pin(pinB, Pin.OUT, Pin.PULL_UP))
+# class RGBled:
+#     def __init__(self, pinR, pinG, pinB):
+#         self.pwmR = PWM(Pin(pinR, Pin.OUT, Pin.PULL_UP))
+#         self.pwmG = PWM(Pin(pinG, Pin.OUT, Pin.PULL_UP))
+#         self.pwmB = PWM(Pin(pinB, Pin.OUT, Pin.PULL_UP))
         
-        self.pwmR.freq(500)
-        self.pwmG.freq(500)
-        self.pwmB.freq(500)
-        self.on = 0
-        self.setRGB(255,255,255)
+#         self.pwmR.freq(500)
+#         self.pwmG.freq(500)
+#         self.pwmB.freq(500)
+#         self.on = 0
+#         self.setRGB(255,255,255)
         
-    def off(self):
-        self.on-=1
-        if not self.on:
-            self.setRGB(255,255,255)
+#     def off(self):
+#         self.on-=1
+#         if not self.on:
+#             self.setRGB(255,255,255)
         
-    def setRGB(self, r, g, b):
-        self.pwmR.duty(int(r * 4))
-        self.pwmG.duty(int(g * 4))
-        self.pwmB.duty(int(b * 4))
+#     def setRGB(self, r, g, b):
+#         self.pwmR.duty(int(r * 4))
+#         self.pwmG.duty(int(g * 4))
+#         self.pwmB.duty(int(b * 4))
     
-    def setHSV(self, h: float, s: float, v: float):
-        self.on+=1
-        _h = h / 60.0
-        i = int(_h) % 6
-        f = _h - int(_h)
-        p = v * (1 - s)
-        q = v * (1 - f * s)
-        r = v * (1 - (1 - f) * s)
-        if i == 0: 
-            self.setRGB(round(v * 255), round(r * 255), round(p * 255))
-        elif i == 1: 
-            self.setRGB(round(q * 255), round(v * 255), round(p * 255))
-        elif i == 2: 
-            self.setRGB(round(p * 255), round(v * 255), round(r * 255))
-        elif i == 3:
-            self.setRGB(round(p * 255), round(q * 255), round(v * 255))
-        elif i == 4:
-            self.setRGB(round(r * 255), round(p * 255), round(v * 255))
-        elif i == 5:
-            self.setRGB(round(v * 255), round(p * 255), round(q * 255))
+#     def setHSV(self, h: float, s: float, v: float):
+#         self.on+=1
+#         _h = h / 60.0
+#         i = int(_h) % 6
+#         f = _h - int(_h)
+#         p = v * (1 - s)
+#         q = v * (1 - f * s)
+#         r = v * (1 - (1 - f) * s)
+#         if i == 0: 
+#             self.setRGB(round(v * 255), round(r * 255), round(p * 255))
+#         elif i == 1: 
+#             self.setRGB(round(q * 255), round(v * 255), round(p * 255))
+#         elif i == 2: 
+#             self.setRGB(round(p * 255), round(v * 255), round(r * 255))
+#         elif i == 3:
+#             self.setRGB(round(p * 255), round(q * 255), round(v * 255))
+#         elif i == 4:
+#             self.setRGB(round(r * 255), round(p * 255), round(v * 255))
+#         elif i == 5:
+#             self.setRGB(round(v * 255), round(p * 255), round(q * 255))
     
 class WIFI:
     def __init__(self):
@@ -220,7 +160,7 @@ class WIFI:
             self.isLighting = 0
             self.isBeeping = 0
             self.NeoPixel = NeoPixel(18, 8)
-            self.RGBled = RGBled(32, 33, 25)
+            # self.RGBled = RGBled(32, 33, 25)
             
             # self.recvmsg = ''
             print(f'[{self.name}] Initialized')
@@ -247,20 +187,20 @@ class WIFI:
                     id, msg = data.decode("utf-8").split(',')
                     print(f'\n[{self.name}][Listen][[{id}]{addr[0]}:{addr[1]}] Received message: {msg}')
                     asyncio.create_task(self.__Light())
-                    asyncio.create_task(self.__Beep())
+                    # asyncio.create_task(self.__Beep())
                     asyncio.create_task(self.__NeoPixel(int(id)))
-                    asyncio.create_task(self.__RGBled(int(id)))
-                    # asyncio.create_task(self.__soundUART())
+                    # asyncio.create_task(self.__RGBled(int(id)))
+                    asyncio.create_task(self.__soundUART())
                 except Exception as e:
                     if str(e) == "[Errno 11] EAGAIN":
                         await asyncio.sleep(0)
                     else:
                         print(f'[{self.name}][Listen]{e} ...')
 
-        async def __RGBled(self, id):
-            self.RGBled.setHSV(id/10*360,1,1)
-            await asyncio.sleep_ms(500)
-            self.RGBled.off()
+        # async def __RGBled(self, id):
+        #     self.RGBled.setHSV(id/10*360,1,1)
+        #     await asyncio.sleep_ms(500)
+        #     self.RGBled.off()
         
         async def __Light(self):
             led = Pin(2, Pin.OUT)
@@ -271,20 +211,24 @@ class WIFI:
             if not self.isLighting:
                 led.value(0)
         
-        # async def __soundUART(self):
-        #     soundUART = UART(1, baudrate=9600, tx=1, rx=3)
-        #     soundUART.write(b'\x7E\xFF\x06\x03\x00\x00\x01\xFE\xF7\xEF')
-        #     await asyncio.sleep(0.5)
+        async def __soundUART(self):
+            print('[SOUND] start')
+            soundUART = UART(1, baudrate=9600, tx=1, rx=3)
+            soundUART.write(b'\x7E\xFF\x06\x03\x00\x00\x01\xFE\xF7\xEF')
+            await asyncio.sleep(0.5)
+            # soundUART.deinit()
+            # UART(0, baudrate=115200)
+            # print('[SOUND] end')
         
-        async def __Beep(self):
-            self.isBeeping +=1
-            pwm = PWM(Pin(4))
-            pwm.freq(2000)
-            pwm.duty(512)
-            await asyncio.sleep(0.3)
-            self.isBeeping -=1
-            if not self.isBeeping:
-                pwm.deinit()
+        # async def __Beep(self):
+        #     self.isBeeping +=1
+        #     pwm = PWM(Pin(4))
+        #     pwm.freq(2000)
+        #     pwm.duty(512)
+        #     await asyncio.sleep(0.3)
+        #     self.isBeeping -=1
+        #     if not self.isBeeping:
+        #         pwm.deinit()
                 
         async def __NeoPixel(self, i):
             self.NeoPixel+i
@@ -313,7 +257,7 @@ class WIFI:
 async def button_handler(wifi):
     button = Pin(17, Pin.IN, Pin.PULL_UP)
     led = Pin(2, Pin.OUT)
-    led2 = Pin(19, Pin.OUT)
+    # led2 = Pin(19, Pin.OUT)
     isPressed = False
     while True:
         isPressed = not bool(button.value())
@@ -321,23 +265,21 @@ async def button_handler(wifi):
 
         if not button.value() and not isPressed:
             led.value(1)
-            led2.value(1)
+            # led2.value(1)
             gc.collect()
             await wifi.Broadcaster.Broadcast('HI')
             await asyncio.sleep(1)
         else:
             led.value(0)
-            led2.value(0)
+            # led2.value(0)
+
 
 if __name__ == '__main__':
-    neo = Neo2(18,8)
-    # neo.Start()
-    neo.Round()
-    # wifi = WIFI()
-    # # wifi.ConnectWIFI('Home')
+    wifi = WIFI()
+    wifi.ConnectWIFI('Home')
     # wifi.ConnectWIFI('CAT-Office')
-    # # wifi.ConnectWIFI('CAT')
-    # asyncio.run(button_handler(wifi))
+    # wifi.ConnectWIFI('SEAL')
+    asyncio.run(button_handler(wifi))
         
     
 

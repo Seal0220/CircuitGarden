@@ -2,27 +2,31 @@
     "Location": {
         "SEAL": {
             "SSID": "SEAL",
-            "Password": "password",
+            "Password": "",
             "Devices": [
                 {
+                 
                     "Name": "Seal Macbook",
                     "Module": "Macbook",
+                    "id":null,
                     "Mac Address": "3c:06:30:3c:4b:36",
-                    "IP": "192.168.100.2",
+                    "IP": "192.168.0.2",
                     "Port": 1900
                 },
                 {
                     "Name": "ESP32-S (01)",
                     "Module": "ESP32-S",
+                    "id":0,
                     "Mac Address": "b8:d6:1a:81:8e:30",
-                    "IP": "192.168.100.3",
+                    "IP": "192.168.0.3",
                     "Port": 1900
                 },
                 {
                     "Name": "ESP32-S (02)",
                     "Module": "ESP32-S",
+                    "id":1,
                     "Mac Address": "24:0a:c4:0c:c7:70",
-                    "IP": "192.168.100.4",
+                    "IP": "192.168.0.4",
                     "Port": 1900
                 },
                 {
@@ -44,6 +48,14 @@
                     "Module": "ESP32-S",
                     "Mac Address": "9c:9c:1f:d5:81:bc",
                     "IP": "192.168.100.7",
+                    "Port": 1900
+                },
+                {
+                    "Name": "ESP32(10)",
+                    "id": 9,
+                    "Module": "ESP32-S",
+                    "Mac Address": "cc:db:a7:46:f5:a8",
+                    "IP": "192.168.0.12",
                     "Port": 1900
                 }
             ]

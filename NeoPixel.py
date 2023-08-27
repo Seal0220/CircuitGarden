@@ -73,3 +73,33 @@ class Neo2(neopixel.NeoPixel):
             
             time.sleep_ms(100)
             
+    def Flow(self):
+        colors = [0 for _ in range(8)]
+        color = j = 0
+        while True:
+            colors = [self.setHSV(color,1,i/4) for i in range(8)]
+            
+            for i in range(8):
+                self[(i+j)%8] = colors[i]
+                
+            super().write()
+            
+            color+=0.5
+            j+=1
+            
+            if color>=360:
+                color=0
+                
+            if j>=8:
+                j=0
+            
+            time.sleep_ms(100)
+            
+            
+            
+if __name__ == '__main__':
+    neo = Neo2(18,8)
+    
+    # neo.Flow()
+    # neo.Start()
+    # neo.Round()
