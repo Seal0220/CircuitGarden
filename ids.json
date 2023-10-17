@@ -1,0 +1,1002 @@
+{
+    "3": {
+        "ID": 3,
+        "MacAddress": "",
+        "Group": "A"
+    },
+    "4": {
+        "ID": 4,
+        "MacAddress": "",
+        "Group": "A"
+    },
+    "5": {
+        "ID": 5,
+        "MacAddress": "",
+        "Group": "A"
+    },
+    "6": {
+        "ID": 6,
+        "MacAddress": "",
+        "Group": "A"
+    },
+    "7": {
+        "ID": 7,
+        "MacAddress": "",
+        "Group": "A"
+    },
+    "8": {
+        "ID": 8,
+        "MacAddress": "",
+        "Group": "A"
+    },
+    "9": {
+        "ID": 9,
+        "MacAddress": "",
+        "Group": "A"
+    },
+    "10": {
+        "ID": 10,
+        "MacAddress": "",
+        "Group": "A"
+    },
+    "11": {
+        "ID": 11,
+        "MacAddress": "cc:db:a7:46:ee:20",
+        "Group": "A"
+    },
+    "12": {
+        "ID": 12,
+        "MacAddress": "cc:db:a7:53:48:bc",
+        "Group": "A"
+    },
+    "13": {
+        "ID": 13,
+        "MacAddress": "cc:db:a7:53:3a:18",
+        "Group": "A"
+    },
+    "14": {
+        "ID": 14,
+        "MacAddress": "cc:db:a7:46:ff:3c",
+        "Group": "A"
+    },
+    "15": {
+        "ID": 15,
+        "MacAddress": "cc:db:a7:47:19:68",
+        "Group": "A"
+    },
+    "16": {
+        "ID": 16,
+        "MacAddress": "cc:db:a7:50:f0:28",
+        "Group": "A"
+    },
+    "17": {
+        "ID": 17,
+        "MacAddress": "cc:db:a7:46:e5:4c",
+        "Group": "A"
+    },
+    "18": {
+        "ID": 18,
+        "MacAddress": "cc:db:a7:4e:d9:8c",
+        "Group": "A"
+    },
+    "19": {
+        "ID": 19,
+        "MacAddress": "cc:db:a7:46:e4:0c",
+        "Group": "A"
+    },
+    "20": {
+        "ID": 20,
+        "MacAddress": "cc:db:a7:47:0b:d8",
+        "Group": "A"
+    },
+    "21": {
+        "ID": 21,
+        "MacAddress": "cc:db:a7:51:e8:cc",
+        "Group": "A"
+    },
+    "22": {
+        "ID": 22,
+        "MacAddress": "cc:db:a7:47:2f:8c",
+        "Group": "A"
+    },
+    "23": {
+        "ID": 23,
+        "MacAddress": "cc:db:a7:4f:da:94",
+        "Group": "A"
+    },
+    "24": {
+        "ID": 24,
+        "MacAddress": "cc:db:a7:4f:80:98",
+        "Group": "A"
+    },
+    "25": {
+        "ID": 25,
+        "MacAddress": "cc:db:a7:4e:da:7c",
+        "Group": "A"
+    },
+    "26": {
+        "ID": 26,
+        "MacAddress": "cc:db:a7:46:ef:e0",
+        "Group": "A"
+    },
+    "27": {
+        "ID": 27,
+        "MacAddress": "cc:db:a7:46:e8:b8",
+        "Group": "A"
+    },
+    "28": {
+        "ID": 28,
+        "MacAddress": "cc:db:a7:46:f4:78",
+        "Group": "A"
+    },
+    "29": {
+        "ID": 29,
+        "MacAddress": "cc:db:a7:4f:e5:64",
+        "Group": "A"
+    },
+    "30": {
+        "ID": 30,
+        "MacAddress": "30:ae:a4:f1:ca:60",
+        "Group": "A"
+    },
+    "31": {
+        "ID": 31,
+        "MacAddress": "",
+        "Group": "A"
+    },
+    "32": {
+        "ID": 32,
+        "MacAddress": "cc:db:a7:53:28:cc",
+        "Group": "A"
+    },
+    "33": {
+        "ID": 33,
+        "MacAddress": "cc:db:a7:46:ee:7c",
+        "Group": "A"
+    },
+    "34": {
+        "ID": 34,
+        "MacAddress": "cc:db:a7:46:e6:58",
+        "Group": "A"
+    },
+    "35": {
+        "ID": 35,
+        "MacAddress": "cc:db:a7:46:ff:c8",
+        "Group": "A"
+    },
+    "36": {
+        "ID": 36,
+        "MacAddress": "cc:db:a7:50:f7:cc",
+        "Group": "A"
+    },
+    "37": {
+        "ID": 37,
+        "MacAddress": "cc:db:a7:46:ed:e8",
+        "Group": "A"
+    },
+    "38": {
+        "ID": 38,
+        "MacAddress": "cc:db:a7:4f:88:70",
+        "Group": "A"
+    },
+    "39": {
+        "ID": 39,
+        "MacAddress": "cc:db:a7:46:ef:e8",
+        "Group": "A"
+    },
+    "40": {
+        "ID": 40,
+        "MacAddress": "cc:db:a7:54:40:24",
+        "Group": "A"
+    },
+    "41": {
+        "ID": 41,
+        "MacAddress": "cc:db:a7:47:2b:1c",
+        "Group": "A"
+    },
+    "42": {
+        "ID": 42,
+        "MacAddress": "cc:db:a7:46:e5:5c",
+        "Group": "A"
+    },
+    "43": {
+        "ID": 43,
+        "MacAddress": "cc:db:a7:46:ff:84",
+        "Group": "A"
+    },
+    "44": {
+        "ID": 44,
+        "MacAddress": "cc:db:a7:46:e6:a8",
+        "Group": "A"
+    },
+    "45": {
+        "ID": 45,
+        "MacAddress": "cc:db:a7:4f:7f:24",
+        "Group": "A"
+    },
+    "46": {
+        "ID": 46,
+        "MacAddress": "cc:db:a7:52:33:48",
+        "Group": "A"
+    },
+    "47": {
+        "ID": 47,
+        "MacAddress": "cc:db:a7:47:0e:e4",
+        "Group": "A"
+    },
+    "48": {
+        "ID": 48,
+        "MacAddress": "cc:db:a7:46:f3:48",
+        "Group": "A"
+    },
+    "49": {
+        "ID": 49,
+        "MacAddress": "cc:db:a7:47:18:cc",
+        "Group": "A"
+    },
+    "50": {
+        "ID": 50,
+        "MacAddress": "cc:db:a7:53:d5:30",
+        "Group": "A"
+    },
+    "51": {
+        "ID": 51,
+        "MacAddress": "cc:db:a7:46:f9:2c",
+        "Group": "A"
+    },
+    "52": {
+        "ID": 52,
+        "MacAddress": "cc:db:a7:52:a2:74",
+        "Group": "A"
+    },
+    "53": {
+        "ID": 53,
+        "MacAddress": "cc:db:a7:52:4a:64",
+        "Group": "B"
+    },
+    "54": {
+        "ID": 54,
+        "MacAddress": "cc:db:a7:53:49:20",
+        "Group": "B"
+    },
+    "55": {
+        "ID": 55,
+        "MacAddress": "cc:db:a7:50:10:38",
+        "Group": "B"
+    },
+    "56": {
+        "ID": 56,
+        "MacAddress": "cc:db:a7:46:f5:5c",
+        "Group": "B"
+    },
+    "57": {
+        "ID": 57,
+        "MacAddress": "cc:db:a7:51:2d:68",
+        "Group": "B"
+    },
+    "58": {
+        "ID": 58,
+        "MacAddress": "cc:db:a7:4f:d5:58",
+        "Group": "B"
+    },
+    "59": {
+        "ID": 59,
+        "MacAddress": "cc:db:a7:4f:db:3c",
+        "Group": "B"
+    },
+    "60": {
+        "ID": 60,
+        "MacAddress": "cc:db:a7:4f:7b:dc",
+        "Group": "B"
+    },
+    "61": {
+        "ID": 61,
+        "MacAddress": "cc:db:a7:46:e8:a4",
+        "Group": "B"
+    },
+    "62": {
+        "ID": 62,
+        "MacAddress": "cc:db:a7:50:ed:78",
+        "Group": "B"
+    },
+    "63": {
+        "ID": 63,
+        "MacAddress": "cc:db:a7:4f:99:2c",
+        "Group": "B"
+    },
+    "64": {
+        "ID": 64,
+        "MacAddress": "cc:db:a7:53:30:84",
+        "Group": "B"
+    },
+    "65": {
+        "ID": 65,
+        "MacAddress": "cc:db:a7:46:ee:5c",
+        "Group": "B"
+    },
+    "66": {
+        "ID": 66,
+        "MacAddress": "cc:db:a7:4f:d1:34",
+        "Group": "B"
+    },
+    "67": {
+        "ID": 67,
+        "MacAddress": "cc:db:a7:47:00:ac",
+        "Group": "B"
+    },
+    "68": {
+        "ID": 68,
+        "MacAddress": "cc:db:a7:46:fc:a0",
+        "Group": "B"
+    },
+    "69": {
+        "ID": 69,
+        "MacAddress": "cc:db:a7:46:f9:80",
+        "Group": "B"
+    },
+    "70": {
+        "ID": 70,
+        "MacAddress": "cc:db:a7:47:2f:58",
+        "Group": "B"
+    },
+    "71": {
+        "ID": 71,
+        "MacAddress": "cc:db:a7:4f:7c:58",
+        "Group": "B"
+    },
+    "72": {
+        "ID": 72,
+        "MacAddress": "cc:db:a7:53:60:74",
+        "Group": "B"
+    },
+    "73": {
+        "ID": 73,
+        "MacAddress": "cc:db:a7:51:15:f8",
+        "Group": "B"
+    },
+    "74": {
+        "ID": 74,
+        "MacAddress": "cc:db:a7:46:ed:cc",
+        "Group": "B"
+    },
+    "75": {
+        "ID": 75,
+        "MacAddress": "cc:db:a7:50:fe:34",
+        "Group": "B"
+    },
+    "76": {
+        "ID": 76,
+        "MacAddress": "cc:db:a7:47:0a:74",
+        "Group": "B"
+    },
+    "77": {
+        "ID": 77,
+        "MacAddress": "cc:db:a7:47:06:30",
+        "Group": "B"
+    },
+    "78": {
+        "ID": 78,
+        "MacAddress": "cc:db:a7:46:e7:c8",
+        "Group": "B"
+    },
+    "79": {
+        "ID": 79,
+        "MacAddress": "cc:db:a7:46:ee:60",
+        "Group": "B"
+    },
+    "80": {
+        "ID": 80,
+        "MacAddress": "cc:db:a7:47:0a:a4",
+        "Group": "B"
+    },
+    "81": {
+        "ID": 81,
+        "MacAddress": "cc:db:a7:47:08:18",
+        "Group": "B"
+    },
+    "82": {
+        "ID": 82,
+        "MacAddress": "cc:db:a7:51:0b:10",
+        "Group": "B"
+    },
+    "83": {
+        "ID": 83,
+        "MacAddress": "cc:db:a7:50:d2:d4",
+        "Group": "B"
+    },
+    "84": {
+        "ID": 84,
+        "MacAddress": "cc:db:a7:52:22:e8",
+        "Group": "B"
+    },
+    "85": {
+        "ID": 85,
+        "MacAddress": "cc:db:a7:46:f9:54",
+        "Group": "B"
+    },
+    "86": {
+        "ID": 86,
+        "MacAddress": "cc:db:a7:50:11:b4",
+        "Group": "B"
+    },
+    "87": {
+        "ID": 87,
+        "MacAddress": "cc:db:a7:47:26:58",
+        "Group": "B"
+    },
+    "88": {
+        "ID": 88,
+        "MacAddress": "cc:db:a7:53:87:88",
+        "Group": "B"
+    },
+    "89": {
+        "ID": 89,
+        "MacAddress": "cc:db:a7:4f:e4:c4",
+        "Group": "B"
+    },
+    "90": {
+        "ID": 90,
+        "MacAddress": "cc:db:a7:50:da:30",
+        "Group": "B"
+    },
+    "91": {
+        "ID": 91,
+        "MacAddress": "cc:db:a7:50:e5:7c",
+        "Group": "B"
+    },
+    "92": {
+        "ID": 92,
+        "MacAddress": "cc:db:a7:4f:7f:dc",
+        "Group": "B"
+    },
+    "93": {
+        "ID": 93,
+        "MacAddress": "cc:db:a7:47:0f:30",
+        "Group": "B"
+    },
+    "94": {
+        "ID": 94,
+        "MacAddress": "cc:db:a7:46:e8:7c",
+        "Group": "B"
+    },
+    "95": {
+        "ID": 95,
+        "MacAddress": "cc:db:a7:53:94:5c",
+        "Group": "B"
+    },
+    "96": {
+        "ID": 96,
+        "MacAddress": "cc:db:a7:4f:b7:18",
+        "Group": "B"
+    },
+    "97": {
+        "ID": 97,
+        "MacAddress": "cc:db:a7:46:f7:44",
+        "Group": "B"
+    },
+    "98": {
+        "ID": 98,
+        "MacAddress": "cc:db:a7:47:0f:44",
+        "Group": "B"
+    },
+    "99": {
+        "ID": 99,
+        "MacAddress": "cc:db:a7:46:dd:78",
+        "Group": "B"
+    },
+    "100": {
+        "ID": 100,
+        "MacAddress": "cc:db:a7:4f:db:90",
+        "Group": "B"
+    },
+    "101": {
+        "ID": 101,
+        "MacAddress": "cc:db:a7:51:0e:50",
+        "Group": "B"
+    },
+    "102": {
+        "ID": 102,
+        "MacAddress": "cc:db:a7:47:02:60",
+        "Group": "B"
+    },
+    "103": {
+        "ID": 103,
+        "MacAddress": "cc:db:a7:52:48:2c",
+        "Group": "C"
+    },
+    "104": {
+        "ID": 104,
+        "MacAddress": "cc:db:a7:46:ee:00",
+        "Group": "C"
+    },
+    "105": {
+        "ID": 105,
+        "MacAddress": "cc:db:a7:4f:9b:38",
+        "Group": "C"
+    },
+    "106": {
+        "ID": 106,
+        "MacAddress": "cc:db:a7:46:f0:5c",
+        "Group": "C"
+    },
+    "107": {
+        "ID": 107,
+        "MacAddress": "cc:db:a7:47:20:78",
+        "Group": "C"
+    },
+    "108": {
+        "ID": 108,
+        "MacAddress": "cc:db:a7:46:e5:cc",
+        "Group": "C"
+    },
+    "109": {
+        "ID": 109,
+        "MacAddress": "cc:db:a7:46:dc:e0",
+        "Group": "C"
+    },
+    "110": {
+        "ID": 110,
+        "MacAddress": "cc:db:a7:46:f7:ac",
+        "Group": "C"
+    },
+    "111": {
+        "ID": 111,
+        "MacAddress": "cc:db:a7:4f:ce:3c",
+        "Group": "C"
+    },
+    "112": {
+        "ID": 112,
+        "MacAddress": "cc:db:a7:51:20:78",
+        "Group": "C"
+    },
+    "113": {
+        "ID": 113,
+        "MacAddress": "cc:db:a7:4f:80:78",
+        "Group": "C"
+    },
+    "114": {
+        "ID": 114,
+        "MacAddress": "cc:db:a7:46:fe:54",
+        "Group": "C"
+    },
+    "115": {
+        "ID": 115,
+        "MacAddress": "cc:db:a7:53:28:bc",
+        "Group": "C"
+    },
+    "116": {
+        "ID": 116,
+        "MacAddress": "cc:db:a7:46:df:b0",
+        "Group": "C"
+    },
+    "117": {
+        "ID": 117,
+        "MacAddress": "cc:db:a7:4f:de:64",
+        "Group": "C"
+    },
+    "118": {
+        "ID": 118,
+        "MacAddress": "cc:db:a7:53:6c:fc",
+        "Group": "C"
+    },
+    "119": {
+        "ID": 119,
+        "MacAddress": "cc:db:a7:4f:d5:a0",
+        "Group": "C"
+    },
+    "120": {
+        "ID": 120,
+        "MacAddress": "cc:db:a7:52:d6:d4",
+        "Group": "C"
+    },
+    "121": {
+        "ID": 121,
+        "MacAddress": "cc:db:a7:4f:23:40",
+        "Group": "C"
+    },
+    "122": {
+        "ID": 122,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "123": {
+        "ID": 123,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "124": {
+        "ID": 124,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "125": {
+        "ID": 125,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "126": {
+        "ID": 126,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "127": {
+        "ID": 127,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "128": {
+        "ID": 128,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "129": {
+        "ID": 129,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "130": {
+        "ID": 130,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "131": {
+        "ID": 131,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "132": {
+        "ID": 132,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "133": {
+        "ID": 133,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "134": {
+        "ID": 134,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "135": {
+        "ID": 135,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "136": {
+        "ID": 136,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "137": {
+        "ID": 137,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "138": {
+        "ID": 138,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "139": {
+        "ID": 139,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "140": {
+        "ID": 140,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "141": {
+        "ID": 141,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "142": {
+        "ID": 142,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "143": {
+        "ID": 143,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "144": {
+        "ID": 144,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "145": {
+        "ID": 145,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "146": {
+        "ID": 146,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "147": {
+        "ID": 147,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "148": {
+        "ID": 148,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "149": {
+        "ID": 149,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "150": {
+        "ID": 150,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "151": {
+        "ID": 151,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "152": {
+        "ID": 152,
+        "MacAddress": "",
+        "Group": "C"
+    },
+    "153": {
+        "ID": 153,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "154": {
+        "ID": 154,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "155": {
+        "ID": 155,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "156": {
+        "ID": 156,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "157": {
+        "ID": 157,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "158": {
+        "ID": 158,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "159": {
+        "ID": 159,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "160": {
+        "ID": 160,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "161": {
+        "ID": 161,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "162": {
+        "ID": 162,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "163": {
+        "ID": 163,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "164": {
+        "ID": 164,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "165": {
+        "ID": 165,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "166": {
+        "ID": 166,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "167": {
+        "ID": 167,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "168": {
+        "ID": 168,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "169": {
+        "ID": 169,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "170": {
+        "ID": 170,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "171": {
+        "ID": 171,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "172": {
+        "ID": 172,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "173": {
+        "ID": 173,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "174": {
+        "ID": 174,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "175": {
+        "ID": 175,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "176": {
+        "ID": 176,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "177": {
+        "ID": 177,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "178": {
+        "ID": 178,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "179": {
+        "ID": 179,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "180": {
+        "ID": 180,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "181": {
+        "ID": 181,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "182": {
+        "ID": 182,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "183": {
+        "ID": 183,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "184": {
+        "ID": 184,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "185": {
+        "ID": 185,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "186": {
+        "ID": 186,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "187": {
+        "ID": 187,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "188": {
+        "ID": 188,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "189": {
+        "ID": 189,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "190": {
+        "ID": 190,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "191": {
+        "ID": 191,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "192": {
+        "ID": 192,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "193": {
+        "ID": 193,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "194": {
+        "ID": 194,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "195": {
+        "ID": 195,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "196": {
+        "ID": 196,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "197": {
+        "ID": 197,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "198": {
+        "ID": 198,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "199": {
+        "ID": 199,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "200": {
+        "ID": 200,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "201": {
+        "ID": 201,
+        "MacAddress": "",
+        "Group": "D"
+    },
+    "202": {
+        "ID": 202,
+        "MacAddress": "",
+        "Group": "D"
+    }
+}
