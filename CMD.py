@@ -28,6 +28,13 @@ class CMDs:
         print(f'[{await GET.getTime()}][CMD] breeze')
         await sendHost('breeze')
         await IO.breeze()
+        
+    @staticmethod
+    async def breezeoff(args):
+        from UDP import sendHost
+        print(f'[{await GET.getTime()}][CMD] breezeoff')
+        await sendHost('breezeoff')
+        await IO.breezeoff()
             
     @staticmethod
     async def beep(args):

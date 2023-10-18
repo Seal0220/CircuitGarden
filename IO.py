@@ -126,11 +126,15 @@ async def beep(time = 0.3):
         
 async def breeze(time = 5):
     global motor
-    
     motor.on()
     await asyncio.sleep(time)
     motor.off()
-        
+    
+    
+async def breezeoff():
+    global motor
+    motor.off()
+    
         
 async def button():
     global neopixel
