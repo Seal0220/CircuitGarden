@@ -1,3 +1,4 @@
 .DS_Store
 esp32.code-workspace
 .gitignore
+pymakr.conf
