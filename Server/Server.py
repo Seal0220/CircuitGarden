@@ -5,7 +5,7 @@ from datetime import datetime
 from threading import Thread
 
 
-
+onlines = _onlines = set()
 
 def send(msg, ips=[(f'192.168.0.{i}',1900) for i in range(4,255)]):
     if len(ips) >=2:
@@ -20,8 +20,38 @@ def send(msg, ips=[(f'192.168.0.{i}',1900) for i in range(4,255)]):
         except Exception as e:
             if  not re.search(r'Errno 64|Errno 65', str(e)):
                 print(f'{datetime.now().strftime("%H:%M:%S")} {e} {client}')
-              
-              
+
+
+def getOnline():
+    global A, B, C, D, onlines, _onlines
+    
+    while True:
+        print(f'{datetime.now().strftime("%H:%M:%S")} GETTING online...')
+        CMDs.geton()
+        
+        def setStatus(st, status):
+            for ID in st:
+                match CMDs.getIDGroup(ID):
+                    case 'A':
+                        A.setStatus(ID, status)
+                    case 'B':
+                        B.setStatus(ID, status)
+                    case 'C':
+                        C.setStatus(ID, status)
+                    case 'D':
+                        D.setStatus(ID, status)
+        if _onlines:
+            setStatus(onlines & _onlines, 'online')
+            setStatus(_onlines.difference(onlines), 'off')
+        else:
+            setStatus(onlines, 'online')
+            
+        _onlines = onlines
+        onlines = set()
+
+        time.sleep(5)
+            
+
 def sendCMD(msg):
         def IP(text):
             try:
@@ -34,7 +64,6 @@ def sendCMD(msg):
         
         try:
             if msg:
-                print(msg)
                 msg = str(msg)
                 text, ips = IP(msg)
                 if msg.startswith('update'):
@@ -63,21 +92,37 @@ def sendCMD(msg):
         
                     
 def recv():
+    global onlines, _onlines
     while True:
         message, addr = server_socket.recvfrom(1024*50)
         message_decode = message.decode()
         print(f'{datetime.now().strftime("%H:%M:%S")} Received message: {message_decode} from {addr}')
+        
+        if 'running' in message_decode:
+            match = re.search(r'(\d+),\s*(\w+)\s*\[(\d+)\s*s\]', message_decode)
+            if match:
+                ID, status, seconds = match.groups()
+                onlines.add(ID)
+                
                 
 
 with open('IPs.json', 'r') as IPs:
-    groups = dict(zip(('A','B','C','D','E'), [{'range' : ids['ID'],'controller' : ids['controller'], 'color': ids['Color']} for ids in json.loads(IPs.read())['Groups'].values()]))
+    groups = dict(zip(('A','B','C','D','E'), [{'range' : IDs['ID'],'controller' : IDs['controller'], 'color': IDs['Color']} for IDs in json.loads(IPs.read())['Groups'].values()]))
     print(groups)
 
 isFlashwhite = False
 
 class CMDs:
     @staticmethod
-    def getGroupIPs(group):
+    def getIDGroup(ID):
+        for group, content in groups.items():
+            rng = content['range']
+            
+            if rng[0] <= int(ID) <= rng[1]:
+                return group
+    
+    @staticmethod
+    def getGroupIPs(group = '_'):
         if group == '_':
             return [(f'192.168.0.{i}',1900) for i in range(4,255)]
         else:
@@ -85,7 +130,7 @@ class CMDs:
             return [(f'192.168.0.{i}',1900) for i in range(rng[0], rng[1]+1)]
         
     @staticmethod
-    def getGroupIDs(group):
+    def getGroupIDs(group = '_'):
         if group == '_':
             return [i for i in range(3,255)]
         else:
@@ -203,13 +248,13 @@ class CMDs:
         
 
 class GroupBtn:
-    def __init__(self, root, group, row, col=0, methods = ['on','intro','flashwhiteon','flashwhiteoff','flashon','flashoff','lighton','lightoff','breeze','breezeoff','sound','reset','setcolor','off', 'geton']):
+    def __init__(self, root, group, row, col=0, methods = ['on','intro','flashwhiteon','flashwhiteoff','flashon','flashoff','lighton','lightoff','breeze','sound','reset','setcolor','off', 'geton']):
         def rgb_to_hex(r, g, b):
             return '#{:02x}{:02x}{:02x}'.format(r, g, b)
         
         
         self.color = rgb_to_hex(*groups.get(group, {'color':[0,0,0]})['color'])
-        self.id = {}
+        self.IDs = {}
         
         
         frame_btns = tk.Frame(root)
@@ -219,36 +264,44 @@ class GroupBtn:
             tk.Button(frame_btns, text=mth, command=lambda mth=mth: getattr(CMDs, mth)(group), width=4, height=3, highlightbackground=self.color).grid(row=row, column=col+1+i, padx=5, pady=5)
         
         
-        frame_ids = tk.Frame(root)
-        frame_ids.grid(row=row+1, column=col)
+        frame_IDs = tk.Frame(root)
+        frame_IDs.grid(row=row+1, column=col)
         
         if (controller := groups.get(group, {'controller': None})['controller']):
-            tk.Label(frame_ids, text=controller, bg='black', fg='white', width=2, height=1).grid(row=row, column=0, padx=20, pady=5)
+            tk.Label(frame_IDs, text=controller, bg='black', fg='white', width=2, height=1).grid(row=row, column=0, padx=20, pady=5)
         
         if group != '_':
-            for i, id in enumerate(CMDs.getGroupIDs(group)):
-                self.id[str(id)] = tk.Label(frame_ids, text=id, bg='black', fg='white', width=2, height=1).grid(row=row, column=1+i, padx=5, pady=5)
+            for i, ID in enumerate(CMDs.getGroupIDs(group)):
+                label = tk.Label(frame_IDs, text=ID, bg='black', fg='white', width=2, height=1)
+                label.grid(row=row, column=1+i, padx=5, pady=5)
+                self.IDs[str(ID)] = label
             
-        tk.Label(frame_ids, width=2, height=1).grid(row=row+1, column=0, padx=5, pady=5)
+        tk.Label(frame_IDs, width=2, height=1).grid(row=row+1, column=0, padx=5, pady=5)
 
-    def setStatus(self, key, value):
+    def setStatus(self, ID, value):
+        statusColor = {
+            'off' : 'black',
+            'online' : 'green',
+            'recv' : 'yellow'
+        }
+        
         try:
-            # self.id[key] = value
-            pass
+            self.IDs[ID].config(bg=statusColor[value])
         except Exception as e:
             print(e)
 
+
+A = B = C = D = object
 def main():
+    global A, B, C, D
     root = tk.Tk()
     root.title('Commands Interface')
-    # root.geometry('1000x1000')
 
     A = GroupBtn(root, 'A', 1)
     B = GroupBtn(root, 'B', 3)
     C = GroupBtn(root, 'C', 5)
     D = GroupBtn(root, 'D', 7)
     All = GroupBtn(root, '_', 9)
-    
     
     cmd_entry = tk.Entry(root)
     cmd_entry.grid(row=10, column=0, padx=5, pady=5)
@@ -262,7 +315,10 @@ if __name__ == '__main__':
     server_socket.bind(('192.168.0.3', 1900))
     
     recv_thread = Thread(target=recv)
+    getOnline_thread = Thread(target=getOnline)
+    
     recv_thread.start()
+    getOnline_thread.start()
     
     main()
 
