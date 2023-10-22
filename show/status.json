@@ -1,0 +1,7 @@
+{
+    "isOnline" : false,
+    "isLight" : false,
+    "isSetColor" : true,
+    "Color": [0,255,100],
+    "_Color": [0,0,0]
+}

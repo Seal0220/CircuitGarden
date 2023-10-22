@@ -3,37 +3,29 @@ import tkinter as tk
 import socket, json, re, base64, ast, time
 from datetime import datetime
 from threading import Thread
-import logging
 
 
 onlines = _onlines = recvs = set()
 isFlashwhite = False
 A = B = C = D = E = object
 
-logging.basicConfig(filename='./Server/log-2023.10.22.log', level=logging.DEBUG, format='[%(asctime)s][%(levelname)s] %(message)s')
-
 extends = {
-    'A':[108,109,121,122,124,129],
-    'B':[119,120,125],
-    'C':[117,118,126,128,130],
-    'D':[115,116,127],
+    'A':[124,129],
+    'B':[125],
+    'C':[126,128, 130],
+    'D':[127],
 }
 
 with open('IPs.json', 'r') as IPs:
     groups = dict(zip(('A','B','C','D','E'), [{'range' : IDs['ID'],'controller' : IDs['controller'], 'color': IDs['Color']} for IDs in json.loads(IPs.read())['Groups'].values()]))
     print(groups)
-    logging.debug(groups)
 
 
 def send(msg, ips):
     if len(ips) >=2:
-        pt = f'[SEND] {msg} to {[int(i[0].split(".")[-1]) for i in ips]}'
-        print(f'[{datetime.now().strftime("%H:%M:%S")}] {pt}')
-        logging.info(pt)
+        print(f'[{datetime.now().strftime("%H:%M:%S")}] [SEND] {msg} to {[int(i[0].split(".")[-1]) for i in ips]}')
     else:
-        pt = f'[SEND] {msg} to [{ips}]'
-        print(f'[{datetime.now().strftime("%H:%M:%S")}] {pt}')
-        logging.info(pt)
+        print(f'[{datetime.now().strftime("%H:%M:%S")}] [SEND] {msg} to [{ips}]')
         
     for client in ips:
         try:
@@ -41,9 +33,7 @@ def send(msg, ips):
             
         except Exception as e:
             if  not re.search(r'Errno 64|Errno 65', str(e)):
-                pt = f'{e} {client}'
-                print(f'[{datetime.now().strftime("%H:%M:%S")}] {pt}')
-                logging.error(pt)
+                print(f'[{datetime.now().strftime("%H:%M:%S")}] {e} {client}')
                 
                 
 def setStatus(st, status):
@@ -57,17 +47,14 @@ def setStatus(st, status):
                 C.setStatus(ID, status)
             case 'D':
                 D.setStatus(ID, status)
-            # case 'E':
-            #     E.setStatus(ID, status)
+            case 'E':
+                E.setStatus(ID, status)
 
 def getOnline():
-    global onlines, _onlines, recvs
+    global A, B, C, D, E, onlines, _onlines, recvs
     while True:
         try:
-            pt = f'GETTING online...'
-            print(f'[{datetime.now().strftime("%H:%M:%S")}] {pt}')
-            logging.critical(pt)
-            
+            print(f'[{datetime.now().strftime("%H:%M:%S")}] GETTING online...')
             CMDs.geton()
             CMDs.geton('E')
             
@@ -80,9 +67,7 @@ def getOnline():
                 setStatus(recvs, 'recv')
                 
                 if offlines:
-                    pt = f'OFFLINE: [{offlines}]'
-                    print(pt)
-                    logging.critical(pt)
+                    print(f'[{datetime.now().strftime("%H:%M:%S")}] OFFLINE: [{offlines}]')
             else:
                 setStatus(onlines, 'online')
                 
@@ -92,9 +77,7 @@ def getOnline():
 
             time.sleep(5)
         except Exception as e:
-            pt = f'{e}'
-            print(f'[{datetime.now().strftime("%H:%M:%S")}] {pt}')
-            logging.error(pt)
+            print(f'[{datetime.now().strftime("%H:%M:%S")}] {e}')  
 
 def sendCMD(msg):
         def IP(text):
@@ -112,9 +95,7 @@ def sendCMD(msg):
                 text, ips = IP(msg)
                 if msg.startswith('update'):
                     cmd, *args = text.split()
-                    pt = f'cmd: {cmd}, arg: {args}'
-                    print(f'[{datetime.now().strftime("%H:%M:%S")}] {pt}')
-                    logging.critical(pt)
+                    print(f'cmd: {cmd}, arg: {args}')
                     args_iter = iter(args)
 
                     if cmd == 'update':
@@ -130,8 +111,7 @@ def sendCMD(msg):
                                 send(f'{cmd} {file_raw} {name}')
 
                         except Exception as e:
-                            print(f'[{datetime.now().strftime("%H:%M:%S")}] {e}')
-                            logging.error(e)
+                            print(e)
                 else:
                     send(msg, ips=ips)
         except:
@@ -143,9 +123,7 @@ def recv():
     while True:
         message, addr = server_socket.recvfrom(1024*50)
         message_decode = message.decode()
-        pt = f'[RECV] {message_decode} from {addr}'
-        print(f'[{datetime.now().strftime("%H:%M:%S")}] {pt}')
-        logging.info(pt)
+        print(f'[{datetime.now().strftime("%H:%M:%S")}] [RECV] {message_decode} from {addr}')
         
         ID, status = message_decode.split(',')
         if re.search(r'running', status):
@@ -171,7 +149,7 @@ class CMDs:
     @staticmethod
     def getGroupIDs(group = '_'):
         if group == '_':
-            rng = [i for i in range(4,131)]
+            rng = [i for i in range(4,103)]
             for i, ext in extends.items():
                 rng.extend(ext)
             return rng
@@ -243,6 +221,11 @@ class CMDs:
     def flashoff(group='_'):
         send('flashoff', CMDs.getGroupIPs(group))
         
+        
+    @staticmethod
+    def intro(group='_'):
+        send('intro', CMDs.getGroupIPs(group))
+        
     
     @staticmethod
     def flashwhiteon(group='_'):
@@ -267,12 +250,6 @@ class CMDs:
     def flashwhiteoff(group='_'):
         global isFlashwhite
         isFlashwhite = False
-        
-    
-    @staticmethod
-    def intro(group='_'):
-        CMDs.flashwhiteoff()
-        send('intro', CMDs.getGroupIPs(group))
         
 
     @staticmethod
@@ -354,7 +331,7 @@ def main():
     B = GroupBtn(root, 'B', 3)
     C = GroupBtn(root, 'C', 5)
     D = GroupBtn(root, 'D', 7)
-    # E = GroupBtn(root, 'E', 9, methods=['on','flashon','flashoff','lighton','lightoff','flow','reset','off','geton'])
+    E = GroupBtn(root, 'E', 9, methods=['on','flashon','flashoff','lighton','lightoff','flow','reset','off','geton'])
     All = GroupBtn(root, '_', 11)
     
     cmd_entry = tk.Entry(root)
