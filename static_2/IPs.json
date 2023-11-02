@@ -1,0 +1,85 @@
+{
+    "SSID": "SEAL",
+    "Password": "seal0220",
+    "IP": "192.168.0.",
+    "SubnetMask": "255.255.255.0",
+    "Gateway": "192.168.0.1",
+    "DNS": "192.168.0.1",
+    "Port": 1900,
+    "Host": [
+        {
+            "ID": 2,
+            "IP": "192.168.0.2",
+            "Module": "Mac mini",
+            "Mac Address": "4c:20:b8:e9:29:c6"
+        },
+        {
+            "ID": 3,
+            "IP": "192.168.0.3",
+            "Module": "SEAL Macbook",
+            "Mac Address": "3c:06:30:3c:4b:36"
+        }
+    ],
+    "Groups": {
+        "A": {
+            "Color": [
+                255,
+                0,
+                0
+            ],
+            "ID": [
+                11,
+                33
+            ],
+            "controller": 5
+        },
+        "B": {
+            "Color": [
+                0,
+                255,
+                0
+            ],
+            "ID": [
+                34,
+                56
+            ],
+            "controller": 6
+        },
+        "C": {
+            "Color": [
+                0,
+                0,
+                255
+            ],
+            "ID": [
+                57,
+                79
+            ],
+            "controller": 7
+        },
+        "D": {
+            "Color": [
+                255,
+                80,
+                0
+            ],
+            "ID": [
+                80,
+                102
+            ],
+            "controller": 8
+        },
+        "E": {
+            "Color": [
+                0,
+                255,
+                255
+            ],
+            "ID": [
+                103,
+                123
+            ],
+            "controller": 9
+        }
+    }
+}
