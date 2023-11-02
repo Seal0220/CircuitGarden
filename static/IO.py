@@ -170,23 +170,26 @@ async def static():
     global isStatic, isFlashing
     await neopixelLight()
     print(f'[{await GET.getTime()}][IO][static] LIGHT ON')
-    
-    sec = 0
+     
     try:
         while True:
-            if isStatic:
+            sec = 0
+            while isStatic:
                 if sec == 0 and not isFlashing:
                     print(f'[{await GET.getTime()}][IO][static] ON')
                     asyncio.create_task(neopixelFlashOn(True))
                 elif sec == 10 and isFlashing:
                     print(f'[{await GET.getTime()}][IO][static] OFF')
                     asyncio.create_task(neopixelFlashOn(False))
+                    await neopixelLight()
                     isFlashing = False
             
-            sec += 1
-            if sec >70:
-                sec = 0
+                sec += 1
+                if sec >70:
+                    sec = 0
                 
+                await asyncio.sleep(1)
+            
             await asyncio.sleep(1)
             
     except Exception as e:

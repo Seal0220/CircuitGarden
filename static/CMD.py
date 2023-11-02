@@ -152,6 +152,8 @@ class CMDs:
     @staticmethod
     async def staticoff(args):
         IO.isStatic = False
+        await IO.neopixelFlashOn(False)
+        await IO.neopixelLight()
     
 
             
