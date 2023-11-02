@@ -10,7 +10,7 @@ onlines = _onlines = recvs = set()
 isFlashwhite = False
 A = B = C = D = E = object
 
-logging.basicConfig(filename='./Server/log-2023.10.22.log', level=logging.DEBUG, format='[%(asctime)s][%(levelname)s] %(message)s')
+logging.basicConfig(filename='./Server/log-2023.10.29.log', level=logging.DEBUG, format='[%(asctime)s][%(levelname)s] %(message)s')
 
 extends = {
     'A':[108,109,121,122,124,129],
@@ -97,45 +97,45 @@ def getOnline():
             logging.error(pt)
 
 def sendCMD(msg):
-        def IP(text):
-            try:
-                pattern_ip = r"\[(.*?)\]"
-                matches = list(map(lambda ip: (f'192.168.0.{ip.strip()}',1900),re.search(pattern_ip, text).group(1).split(',')))
-                text = re.sub(pattern_ip, '', text)
-                return [text, matches]
-            except:
-                return [text, CMDs.getGroupIPs()]
-        
+    def IP(text):
         try:
-            if msg:
-                msg = str(msg)
-                text, ips = IP(msg)
-                if msg.startswith('update'):
-                    cmd, *args = text.split()
-                    pt = f'cmd: {cmd}, arg: {args}'
-                    print(f'[{datetime.now().strftime("%H:%M:%S")}] {pt}')
-                    logging.critical(pt)
-                    args_iter = iter(args)
-
-                    if cmd == 'update':
-                        try:               
-                            path = next(args_iter)
-                            name = next(args_iter)
-                            with open(path, 'rb') as file:
-                                file_raw = base64.b64encode(file.read()).decode()
-                            
-                            if ips:
-                                send(msg=f'{cmd} {file_raw} {name}', ips=ips)
-                            else:
-                                send(f'{cmd} {file_raw} {name}')
-
-                        except Exception as e:
-                            print(f'[{datetime.now().strftime("%H:%M:%S")}] {e}')
-                            logging.error(e)
-                else:
-                    send(msg, ips=ips)
+            pattern_ip = r"\[(.*?)\]"
+            matches = list(map(lambda ip: (f'192.168.0.{ip.strip()}',1900),re.search(pattern_ip, text).group(1).split(',')))
+            text = re.sub(pattern_ip, '', text)
+            return [text, matches]
         except:
-            pass
+            return [text, CMDs.getGroupIPs()]
+    
+    try:
+        if msg:
+            msg = str(msg)
+            text, ips = IP(msg)
+            if msg.startswith('update'):
+                cmd, *args = text.split()
+                pt = f'cmd: {cmd}, arg: {args}'
+                print(f'[{datetime.now().strftime("%H:%M:%S")}] {pt}')
+                logging.critical(pt)
+                args_iter = iter(args)
+
+                if cmd == 'update':
+                    try:               
+                        path = next(args_iter)
+                        name = next(args_iter)
+                        with open(path, 'rb') as file:
+                            file_raw = base64.b64encode(file.read()).decode()
+                        
+                        if ips:
+                            send(msg=f'{cmd} {file_raw} {name}', ips=ips)
+                        else:
+                            send(f'{cmd} {file_raw} {name}')
+
+                    except Exception as e:
+                        print(f'[{datetime.now().strftime("%H:%M:%S")}] {e}')
+                        logging.error(e)
+            else:
+                send(msg, ips=ips)
+    except:
+        pass
         
                     
 def recv():

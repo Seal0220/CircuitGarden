@@ -55,7 +55,7 @@ async def neopixelIn():
         
     isFlashing = True
     asyncio.create_task(neopixelFlash())
-    await asyncio.sleep(15)
+    await asyncio.sleep(10)
     isFlashing = False
     
     await neopixel.setColor(colors[0])
